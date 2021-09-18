@@ -1,16 +1,25 @@
-  listWeeklyItems(links,"weeklist")
 
-  function listWeeklyItems(weekitems, listElementName)
-    let ol = document.getElementById('weeklist');
-    if(ol) {
-        weekitems.forEach(element => {
-            let a = document.createElement('a')
-            a.innerHTML = element.label;
-            a.href = element.url;
+const links = [
+  {
+    label: "Week1 notes",
+    url: "week1/index.html"
+  }
+];
 
-            let li = document.createElement('li')
-            li.appendChild(a);
+const populateContents = () => {
+  const contentsList = document.querySelector("#weeklist")
 
-            ol.appendChild(li);
-        });
-    }
+  links.map((link) => {
+    const list = document.createElement("li")
+    const a = document.createElement("a")
+
+    a.textContent = link.label
+    a.setAttribute("href", link.url)
+
+    list.appendChild(a)
+
+    contentsList.appendChild(list)
+  })
+}
+
+populateContents()
