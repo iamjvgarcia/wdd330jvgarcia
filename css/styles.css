@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Roboto&display=swap');
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Lora', serif;
+}
+
+header, main, footer {
+    padding: 1rem;
+}
+
+main {
+    width: 75%;
+    background-color: grey;
+    margin: auto;
+}
