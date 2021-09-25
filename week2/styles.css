@@ -16,7 +16,7 @@ header, footer {
     background-color: #A8DCD9;
 }
 
-header p, footer p, main {
+header h1, header p, footer p, main {
     margin: auto;
     width: 75%;
 }
