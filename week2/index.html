@@ -12,21 +12,31 @@
 
 <body>
     <header>
+        <h1>W02: Team Activity</h1>
         <p>Instead of taking down notes, I decided to do the Team Activity based on what I learned from my readings.</p>
     </header>
     <main>
+
+        <h2>Requirement 1</h2>
+        <p>For this part, I decided to use loop.</p>
         <label>Enter a number</label><br>
         <input type="text" id="num" size="9"><br>
         <button type="button" onclick="compute()">Output</button>
         <div id="output"></div><br>
 
-        <p>Modify...</p>
+
+        <h2>Requirement 2</h2>
+        <p>I only had to think of how I can add to numbers the user that the user inputted.</p>
         <label>Enter two numbers</label><br>
         <input type="text" id="firstNum" size="9"><br>
         <input type="text" id="secondNum" size="9"><br>
         <button type="button" onclick="sum()">add+</button>
         <div id="addition"></div><br>
 
+        <h2>Add More Operation</h2>
+        <p>This was challenging for me. I ended up using switch since I cannot think of a better way to call each
+            function within the calculator function and return the answer based on which operation was chosen by the
+            user. I decided to scrap what I was doing and try to use switch instead.</p>
         <label>Basic Calculator</label><br>
         <input type="text" id="firstVal" size="9"><br>
         <input type="text" id="secondVal" size="9"><br>
@@ -94,6 +104,40 @@
             }
 
             document.getElementById('answer').innerHTML = output;
+
+            /*Scrapped Code
+            function calculator(operation) {
+            let fValue = parseFloat(document.getElementById('firstVal').value);
+            let sValue = parseFloat(document.getElementById('secondVal').value);
+            
+            let sum = add(input1, input2);
+            let dif = sub(input1, input2);
+            let prod = mul(input1, input2);
+            let quo = div(input1, input2);
+            let output = ;
+
+            document.getElementById('answer').innerHTML = output;
+
+                function add(fValue, sValue) {
+                    return fValue + sValue;
+                }
+
+                function sub(fValue, sValue) {
+                    return fValue - sValue;
+                }
+
+                function mul(fValue, sValue) {
+                    return fValue * sValue;
+                }
+
+                function div(fValue, sValue) {
+                    return fValue / sValue;
+                }
+
+            }
+
+            
+            */
 
         }
     </script>
