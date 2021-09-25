@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="No notes for the week, challenged seld to do Week 2 Team Activity">
+    <link rel="stylesheet" href="styles.css">
+    <title>W2: Team Activity</title>
+</head>
+
+
+<body>
+    <header>
+        <p>Instead of taking down notes, I decided to do the Team Activity based on what I learned from my readings.</p>
+    </header>
+    <main>
+        <label>Enter a number</label><br>
+        <input type="text" id="num" size="9"><br>
+        <button type="button" onclick="compute()">Output</button>
+        <div id="output"></div><br>
+
+        <p>Modify...</p>
+        <label>Enter two numbers</label><br>
+        <input type="text" id="firstNum" size="9"><br>
+        <input type="text" id="secondNum" size="9"><br>
+        <button type="button" onclick="sum()">add+</button>
+        <div id="addition"></div><br>
+
+        <label>Basic Calculator</label><br>
+        <input type="text" id="firstVal" size="9"><br>
+        <input type="text" id="secondVal" size="9"><br>
+        <button onclick="calculator('1')">+</button>
+        <button onclick="calculator('2')">-</button>
+        <button onclick="calculator('3')">*</button>
+        <button onclick="calculator('4')">/</button>
+        <div id="answer"></div><br>
+
+    </main>
+    <footer>
+        <p> Jill Anne Ruth V. Garcia | Philippines |
+            <a href="https://www.byui.edu/online">
+                Brigham Young University Online
+            </a>
+        </p>
+    </footer>
+    <script>
+        "use strict"
+
+        function compute() {
+
+            let n = parseFloat(document.getElementById('num').value);
+            let ans = 0;
+
+            for (let i = 1; i <= n; i++) {
+                ans += i;
+            }
+
+            document.getElementById('output').innerHTML = ans;
+
+        }
+
+        function sum() {
+
+            let fNum = parseFloat(document.getElementById('firstNum').value);
+            let sNum = parseFloat(document.getElementById('secondNum').value);
+
+            let answer = fNum + sNum;
+
+            document.getElementById('addition').innerHTML = answer;
+
+        }
+
+        function calculator(operation) {
+            let fValue = parseFloat(document.getElementById('firstVal').value);
+            let sValue = parseFloat(document.getElementById('secondVal').value);
+            let output;
+            let op = operation;
+            switch (op) {
+                case '1':
+                    output = fValue + sValue;
+                    break;
+                case '2':
+                    output = fValue - sValue;
+                    break;
+                case '3':
+                    output = fValue * sValue;
+                    break;
+                case '4':
+                    output = fValue / sValue;
+                    break;
+                default:
+                    break;
+            }
+
+            document.getElementById('answer').innerHTML = output;
+
+        }
+    </script>
+</body>
+
+</html>
