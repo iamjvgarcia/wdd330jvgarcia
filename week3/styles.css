@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Roboto&display=swap');
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: auto;
+}
+
+h1, h2, h3 {
+    font-family: 'Lora', serif;
+}
+
+header, main, footer {
+    padding: 2rem;
+}
+
+header, footer {
+    background-color: #A8DCD9;
+}
+
+header h1, header p, footer p, main {
+    margin: auto;
+    width: 75%;
+}
+
+main {
+    background-color: #FDF7FA;
+} 
+
+.code {
+    background-color: rgb(177, 171, 171);
+    font-family: monospace ;
+    display: inline-flex;
+    padding: .25em;
+}
