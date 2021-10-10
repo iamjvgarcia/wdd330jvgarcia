@@ -1,41 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>W4 Activity: Tic-Toc-Toe</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W4 Activity: Tic-Toc-Toe</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div id="play">
-        <div class="row">
-            <div class="cell" id="one"></div>
-            <div class="cell" id="two"></div>
-            <div class="cell" id="three"></div>
-        </div>
-        <div class="row">
-            <div class="cell" id="four"></div>
-            <div class="cell" id="five"></div>
-            <div class="cell" id="six"></div>
-        </div>
-        <div class="row">
-            <div class="cell" id="seven"></div>
-            <div class="cell" id="eight"></div>
-            <div class="cell" id="nine"></div>
-        </div>
-        </div>
-    <button id="reset">RESET</button>
-<script>
-    function play() {
-        const board = document.getElementById('play');
-        let player1 = 'X';
-        let player2 = 'O';
+  <header>
+    <h1>
+      W4 Activity: Tic-Toc-Toe
+    </h1>
+</header>
+  <main>
+  <div id="board">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <br>
+  <button type="reset" id="reset">RESET</button>
+</main>
+<footer>
+  <p>Jill Anne Ruth V. Garcia | Philippines |
+      <a href="https://www.byui.edu/online">
+          Brigham Young University Online
+      </a>
+  </p>
+</footer>
+  <script>
+    const board = document.getElementById('board');
+    const resetBtn = document.getElementById('reset');
+    const player1 = 'X';
+    const player2 = 'O';
+    let currPlayer = player1;
+    const spaces = [];
 
-        for(let i = 0; i < divBoard.children.length; i++);
-
-
+    const play = (e) => {
+      const id = e.target.id;
+      e.target.innerText = currPlayer;
+      if (currPlayer === player1) currPlayer = player2;
+        else currPlayer = player1;
     };
-</script>
+
+    const restart =() => {
+      const board = document.getElementById('board');
+        for (let i = 0; i < board.children.length; i++) {
+          board.children[i].innerText = '';
+        };
+    }
+
+    board.addEventListener('click', play);
+    resetBtn.addEventListener('click', restart);
+  </script>
 </body>
+
 </html>
