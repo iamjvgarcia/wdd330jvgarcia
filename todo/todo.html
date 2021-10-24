@@ -10,25 +10,23 @@
 </head>
 
 <body>
-    <div id="myDIV" class="header">
+    <div id="container" class="header">
         <h2>To Dos</h2>
 
 
         <ul id="list">
             <li class="checked">Pay bills</li>
-            <li>Meet George</li>
-            <li>Buy eggs</li>
-            <li>Read a book</li>
+            <li>Do Assignments</li>
+            <li>Read Reading List</li>
+            <li>Do Laundry</li>
             <li>Organize office</li>
         </ul>
-        <nav>
-            <ul class="nav">
-                <li id="todoLeft"></li>
-                <li id="all">All</li>
-                <li id="notDone">Active</li>
-                <li id="done">Completed</li>
-            </ul>
-        </nav>
+        <div class="tabs_wrap">
+            <span id="items-left"></span>
+            <button class="filterButton" >Complete</button>
+            <button class="filterButton" >Active</button>
+            <button class="filterButton"  class="active">Both</button>
+          </div>
 
         <input type="text" id="myInput" placeholder="Title...">
         <span onclick="newElement()" class="addBtn">Add</span>

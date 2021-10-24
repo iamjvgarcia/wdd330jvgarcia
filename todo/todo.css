@@ -1,8 +1,15 @@
-
-
+/* colors https://coolors.co/8da7be-31393c-cde6f5-87919e-707078 */
 /* Include the padding and border in an element's total width and height */
-* {
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  * {
+  box-sizing: border-box;
+  }
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  #container {
+    width: 500px;
   }
   
   /* Remove margins and padding from the list */
@@ -114,4 +121,36 @@
   
   .addBtn:hover {
     background-color: #bbb;
+  }
+
+  .tabs_wrap {
+    margin: auto;
+    background: #e9ecf1;
+  }
+
+  .tabs_wrap span {
+    width: 25%;
+  }
+
+ .tabs_wrap button{
+    display: inline-block;
+    border: none;
+    width: 25%;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    background: #e9ecf1;
+    border-right: 1px solid #c1c4c9;
+    padding: 13px 15px;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+  }
+  
+   
+ .tabs_wrap button:hover,
+ .tabs_wrap button:active{
+    background: #8DA7BE;
+    color: #fff;
   }

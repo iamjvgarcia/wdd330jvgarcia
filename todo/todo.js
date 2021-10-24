@@ -34,7 +34,7 @@ function newElement() {
   var t = document.createTextNode(inputValue);
   li.appendChild(t);
   if (inputValue === '') {
-    alert("You must write something!");
+    alert("Add a task!");
   } else {
     document.getElementById("list").appendChild(li);
   }
@@ -51,5 +51,42 @@ function newElement() {
       var div = this.parentElement;
       div.style.display = "none";
     }
+    
   }
+  
 }
+
+function filterList(todos, fragment, filterCallback) {
+  todos.filter(filterCallback)
+    .forEach(filteredTodo => appendFragmentToList(filteredTodo, todosFragment));
+}
+
+/**
+function removeAllChildNodesFrom($element) {
+  while($element.hasChildNodes()) {
+    $element.removeChild($element.lastChild);
+  }
+} */
+/* 
+const $FilterBtnCollection = document.querySelectorAll('.filterButton');
+const li = document.createElement("li");
+
+
+
+$FilterBtnCollection.forEach($filterButton => {
+  $filterButton.addEventListener('click', (event) => {
+    const filter = event.target.dataset.filter || 'all';
+    removeAllChildNodesFrom(list);
+    switch(filter) {
+      case 'completed':
+        filterList(li,  (todo) => todo.complete);
+        break;
+      case 'active':
+        filterList(li,  (todo) => !todo.complete);
+        break;
+      default:
+        filterList(li,  (todo) => todo);
+    }
+  });
+});
+*/
