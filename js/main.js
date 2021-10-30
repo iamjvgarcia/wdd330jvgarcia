@@ -23,7 +23,11 @@ const links = [
     {
       label: "TODO",
       url: "todo/index.html",
-    }
+    },
+    {
+      label: "Week7 notes",
+      url: "week7/index.html",
+    } ,
 ];
 
 const populateContents = () => {
