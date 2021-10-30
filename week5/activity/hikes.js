@@ -71,11 +71,8 @@ function renderHike(hike) {
   return item;
 }
 
-function addcomment() {
-  const commentform = document.createElement('form');
-  commentform.innerHTML = `
-    <textarea id="newComment" placeholder="Write a comment"></textarea>
-    <button type="submit"> Submit </button>`;
-  return commentform;
-}
-
+const myHikes = new Hikes("hikes");
+window.addEventListener("load", () => {
+  myHikes.showHikeList();
+});
+myHikes.hikeList;
