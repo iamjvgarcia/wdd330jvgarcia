@@ -37,3 +37,47 @@ body {
       grid-template-columns: repeat(2, 1fr);
       margin: 2em;
   }
+
+  .oneContainer, .addComment {
+    padding: 2em;
+  }
+
+  #backButton {
+    padding: .5rem 1em;
+    font-size: 16px;
+    background-color: #CDE6F5;  
+    border: 2px solid #ccc;
+    border-radius: 1em;
+  }
+
+  #backButton:hover {
+    background-color: blanchedalmond;
+  }
+
+  #submit {
+    padding: .5rem 1rem;
+    font-size: 16px;
+    color: blanchedalmond;
+    background-color: #31393C;  
+    border-radius: 0 1em 1em 0;
+    border: 2px solid #ccc;
+  }
+
+  #submit:hover {
+    color: black;
+    background-color: #CDE6F5;
+  }
+
+  #commentEntry {
+    width: auto;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 1em 0 0 1em;
+    font-size: 16px;
+    background-color: #F8F9F1;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: .5rem 1rem;
+    outline: none;    
+    margin-right: 0;
+  }
