@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    font-family:  'Roboto', sans-serif;
+}
+
+main {
+    padding: 1rem;
+}
+
+h1 {
+    background-color: #31393C;
+    padding: 1rem;
+    color: cornsilk;
+}
+
+.personName {
+    font-weight: bold;
+    margin: 1rem;
+}
+.personName:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.details {
+    padding: 0 1rem;
+    margin-top: -1rem;
+}
+#previousButton, #nextButton {
+    padding: 1.5rem;
+    background-color: rgb(164, 216, 218);
+    border: none;
+    cursor: pointer;
+    margin: 1rem;
+}
+
+#previousButton:active, #nextButton:active {
+    background-color: rgb(192, 240, 242);
+}
+
+#nextButton {
+    background-image: url("https://img.icons8.com/carbon-copy/50/000000/long-arrow-right.png");
+    background-repeat: no-repeat;
+}
+
+#previousButton {
+    background-image: url("https://img.icons8.com/carbon-copy/50/000000/long-arrow-left.png");
+    background-repeat: no-repeat;
+}
