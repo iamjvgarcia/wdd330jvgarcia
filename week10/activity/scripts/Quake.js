@@ -20,3 +20,12 @@ export default class Quake {
     // filter this._quakes for the record identified by id and return it
   }
 }
+
+// this._quakes = await getJSON(
+//   this.baseUrl +
+//     `&starttime=2019-01-01&endtime=2019-03-02&latitude=${
+//       position.lat
+//     }&longitude=${position.lon}&maxradiuskm=${radius}`
+// );
+
+// return this._quakes.features.filter(item => item.id === id)[0];
