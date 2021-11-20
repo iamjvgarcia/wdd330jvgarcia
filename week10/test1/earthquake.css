@@ -1,0 +1,13 @@
+body {
+    background-color: cornflowerblue;
+}
+.quakeStyles {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  .quakeStyles li {
+    margin: 0.5em 0;
+  }
+  .quakeStyles div {
+    font-size: 0.8em;
+  }
