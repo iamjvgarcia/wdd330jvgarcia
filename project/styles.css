@@ -1,0 +1,92 @@
+body {
+    font-family: 'Helvetica';
+    background-color: #FFFFFF;
+  }
+  
+
+  .filter-buttons {
+    display: flex;
+    margin-bottom: 20px;
+    float: right;
+  }
+  
+  .list-view-button,
+  .grid-view-button {
+    background-color: #FED448;    
+    color: #424B54;
+    border: 1px solid #424B54;
+    padding: 1rem;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  .list-view-button:hover,
+  .grid-view-button:hover {
+    background: #424B54;
+    color: #FFFFFF;
+  }
+  
+  .list-view-button {
+    margin-right: 10px;
+  }
+  
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  li {
+    background-color: #1f364d;
+    color: white;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+  }
+  
+  
+  .list.list-view-filter {
+    flex-direction: column;
+  }
+  
+  .list.list-view-filter li {
+    padding: 10px;
+  }
+  
+  .list.grid-view-filter {
+    flex-flow: row wrap;
+  }
+  
+  .list.grid-view-filter li {
+    width: calc(50% - 210px);
+    padding: 100px;
+    margin-right: 10px;
+    text-align: center;
+  }
+
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#FED448;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #FFF;
+}
+
+.float:hover {
+    background-color: #FEC50B;
+    cursor: pointer;
+}
+
+.my-float{
+	margin-top:22px;
+}
+
+
