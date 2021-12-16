@@ -35,10 +35,17 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    margin-bottom: 10px;
-
+    margin: 10px;
+    list-style: none;
   }
 
+  li {
+    background-color: #1f364d;
+    color: white;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+  }
   
   
   .list.list-view-filter {
@@ -59,7 +66,6 @@ body {
     margin-right: 10px;
     text-align: center;
   }
-
 
 .toggle-container {
   position: fixed;
@@ -149,21 +155,24 @@ body {
   -o-transition: all 0.6s ease;
   transition: all 0.6s ease;
 }
-.create-journal ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-.create-journal ul li input, .create-journal ul li textarea {
+
+.create-journal input, .create-journal textarea {
   background-color: #fafafa;
   width: 90%;
   border: 2px solid #eeeeee;
   padding: 20px;
   border-radius: 6px;
   font-size: 16px;
+  margin: 5px auto;
 }
-.create-journal ul li button {
+
+.create-journal input:focus, .create-journal textarea:focus {
+  outline-color: gray;
+}
+
+.create-journal button {
   padding: 10px;
+  margin: 10px auto;
   background-color: black;
   color: white;
   border: none;
@@ -177,4 +186,14 @@ body {
   -ms-transform: translate(-50%, -50%) scale(1);
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
+}
+
+
+.journal-items button {
+  background-color: #FED448;
+  padding: 3px;
+  border: none;
+  margin: 5px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  cursor: pointer;
 }

@@ -24,10 +24,9 @@
 
         <div class="content">
 
-            <div class="list list-view-filter">
-                <ul id="notes"></ul>
-            </div>
-        </div>
+            <ul class="list list-view-filter" id="journal-list">
+                <span class="date-updated">Last updated: </span>
+        </ul>
         <div class="toggle-container">
             <div class="toggle">
                 <span></span>
@@ -37,15 +36,15 @@
 
         <form class="create-journal">
             <h2 id="create-title">Create Journal</h2>
-            <ul>
-                <li><input type="text" class="entry-title" placeholder="Give your entry a title..."></li>
-                <br>
-                <li><button type="submit" class="save-button">Submit</button></li>
-            </ul>
+            <input type="text" class="entry-title" placeholder="Give your entry a title...">
+            <br>
+            <button type="submit" class="save-button">Submit</button>
         </form>
 
     </div>
+</div>
     <script src="js/index.js"></script>
+    <script src="js/create.js"></script>
 </body>
 
 </html>
