@@ -12,7 +12,7 @@ gridViewButton.onclick = function () {
   list.classList.add('grid-view-filter');
 }
 
-//Create
+//----------------------  RENDER Modal ---------------------- 
 var mobileToggleContainer = document.querySelector('.toggle-container');
 var mobileToggle = document.querySelector('.toggle');
 var mobileMenu = document.querySelector('.create-journal');
@@ -25,181 +25,126 @@ if (mobileToggle) {
 }
 
 
-(function() {
-  'use strict';
+function journal(){
 
-  var app = {
-    noteEditor: document.getElementsByClassName('journal-editor'),
-    noteEditorTitle: document.getElementById('journal-editor-title'),
-    title: document.getElementsByClassName('entry-title'),
-    message: document.getElementsByClassName('entry-textbox'),
-    addButton: document.getElementById('add-btn'),
-    errorDisplay: document.getElementById('error'),
-    deleteButton: document.querySelector('.delete'),
-    editButton: document.querySelector('.edit'),
-    notesSection: document.getElementById('notes-section'),
-    notes: document.getElementById('notes'),
-    editMode: false,
+  // Retrieve stored notes from local storage
+  var notesObj = JSON.parse(localStorage.getItem('notes')) || {};   
 
-    init: function() {
-      app.title.addEventListener('focus', app.clearError);
-      app.message.addEventListener('focus', app.clearError);
 
-      app.title.addEventListener('keypress', app.detectInput);
-      app.message.addEventListener('keypress', app.detectInput);
+  // Render existing notes on load
+  renderNotes(notesObj);
 
-      app.addButton.addEventListener('click', app.createNote);
-    },
-    detectInput1: function() {
-      if(!app.title.value || !app.message.value) {
-        return;
-      } else {
-        app.addButton.innerText = 'Create Note';
-      }
-    },
-    clearError: function() {
-      app.title.classList.remove('is-empty');
-      app.message.classList.remove('is-empty');
-      app.errorDisplay.innerHTML = '';
-    },
-    createNote: function() {
-      if(!app.title.value || !app.message.value) {
-        if(!app.title.value) {
-          app.title.classList.add('is-empty');  
-        }
-        if(!app.message.value) {
-          app.message.classList.add('is-empty');
-        }
-        app.errorDisplay.innerHTML = '<span>*Values required</span>';
-        return;
-      } else {
-        var note = new Object();
+  // ----------------------  RENDER notes ---------------------- 
+  function renderNotes(notesObj){
 
-        note.title = app.title.value;
-        note.message = app.message.value;
+      var mainNode = document.getElementById("notes");
 
-        app.addNote(note);
-      }
-    },
-    addNote: function(note) {
-      var li = document.createElement('li'),
-      deleteBtn = document.createElement('span'),
-      editBtn = document.createElement('span'),
-      title = document.createElement('span'),
-      message = document.createElement('span'),
-      footer = document.createElement('footer');
+      // Clear old notes
+      mainNode.innerHTML = "";
 
-      deleteBtn.className = 'delete';
-      deleteBtn.innerHTML = '<i class="fa fa-trash-o"></i>';
-      deleteBtn.addEventListener('click', app.deleteNote);
+      // Loop through each note 
+      for (var key in notesObj){
+          // Create card div
+          var div = document.createElement("div");
+          div.className = 'card';
+          div.dataset.id = key;
 
-      title.className = 'note-title';
-      title.innerHTML = note.title;
+          var noteText = createEleNode('p',null, notesObj[key].text, null, null);
+          var noteType = createEleNode('hr', 'noteType', "", null, null);
+          var delBtn = createEleNode('button', 'secondaryBtn', 'Delete', 'click', deleteNote);
+          var editBtn = createEleNode('button', 'secondaryBtn', 'Edit', 'click', editNote);
 
-      message.className = 'note-message';
-      message.innerHTML = note.message;
-
-      editBtn.className = 'edit';
-      editBtn.innerHTML = '<i class="fa fa-pencil-square-o"></i> Edit';
-      editBtn.addEventListener('click', app.editNote);
-
-      footer.appendChild(editBtn);
-      
-
-      li.appendChild(deleteBtn);
-      li.appendChild(title);
-      li.appendChild(message);
-      li.appendChild(footer);
-
-      app.notes.prepend(li);
-
-      app.title.value = '';
-      app.message.value = '';
-
-      if(!app.editMode) {
-        app.addButton.innerText = 'Create Note';
-      } else {
-        setTimeout(function() {
-          app.addButton.innerText = 'Create Note';
-        }, 200);
-      }
-    },
-    editNote: function() {
-      var li,
-      title,
-      message,
-      note = new Object();
-
-      li = this.parentNode.parentNode;
-
-      for(var i = 0; i < li.childNodes.length; i++) {
-        if(li.childNodes[i].className === 'note-title') {
-          title = li.childNodes[i].innerText;
-        }
-      }
-
-      for(var i = 0; i < li.childNodes.length; i++) {
-        if(li.childNodes[i].className === 'note-message') {
-          message = li.childNodes[i].innerText;
-        }
-      }
-
-      note.title = title;
-      note.message = message;
-      
-      app.openNote(note);
-
-      setTimeout(function() {
-        li.remove();
-      }, 200);
-    },
-    openNote: function(note) {
-      if(!app.editMode) {
-        app.noteEditor.classList.add('hide');
-        app.notesSection.classList.add('hide');
-      
-        setTimeout(function() {
-          app.noteEditorTitle.innerText = 'Edit Note';
-          
-          app.addButton.innerText = 'Done';
-          app.addButton.removeEventListener('click', app.createNote);
-          app.addButton.addEventListener('click', app.saveNote);
-
-          app.title.value = note.title;
-          app.message.value = note.message;
-
-          app.noteEditor.classList.remove('hide');
-          app.editMode = true;
-        }, 200);
-      } else {
-        return;
+          div.appendChild(noteText);
+          div.appendChild(delBtn);
+          div.appendChild(editBtn);
+          div.appendChild(noteType);
+              
+          mainNode.appendChild(div);
       }  
-    },
-    saveNote: function() {
-      app.createNote();
+  }
 
-      app.noteEditor.classList.add('hide');
-      app.notesSection.classList.add('hide');
-    
-      setTimeout(function() {
-        app.noteEditorTitle.innerText = 'Create Note';
+  // ----------------------  ADD note ---------------------- 
+  var saveBtn = document.getElementsByClassName("save-button");
+  saveBtn.addEventListener("click", function() {
 
-        app.addButton.removeEventListener('click', app.saveNote);
-        app.addButton.addEventListener('click', app.createNote);
+          var userInput = document.getElementsByClassName("entry-title").value;
+          if(userInput.length > 0){
+          //Generate UID using UNIX timestamp    
+              var uid = Date.now().toString();
 
-        app.title.value = '';
-        app.message.value = '';
+              // Current note object
+              var currentNote = {
+                  text: userInput,
+              }
 
-        app.notesSection.classList.remove('hide');
-        app.noteEditor.classList.remove('hide');
-        app.editMode = false;
-      }, 200);
-    },    
-    deleteNote: function() {
-      this.parentNode.remove();
-    }
+              notesObj[uid] = currentNote;
+
+              // Save the object in local storage
+              updateLocalStorage();
+
+              // Re render
+              renderNotes(notesObj);
+          }
+
+  });
+
+  // ----------------------  DELETE note ---------------------- 
+  function deleteNote(){
+      // Remove from DOM
+      this.parentNode.parentNode.removeChild(this.parentNode);
+      // Remove from object
+      delete notesObj[this.parentNode.dataset.id];
+      // Update local storage
+      updateLocalStorage();
   };
 
-  app.init();
+  // ----------------------  EDIT note ---------------------- 
+  function editNote(){
+      // Get id from dataset
+      var noteId = this.parentNode.dataset.id;
+      // Create journalTitle
+      var journalTitle = "<input id='edit-" + noteId + "'>"+ this.parentNode.firstChild.innerText +"</input>";
+      this.parentNode.innerHTML = journalTitle;
+      var editBox = document.getElementById('edit-' + noteId);
+      // Set focus to input
+      editBox.focus();
+      // Update note when focus moves from the input
+      editBox.addEventListener("blur", function () {
+          // Update in local object
+          notesObj[noteId].text = editBox.value;
+          // Update local storage
+          updateLocalStorage();
+          // Re create note with upated value
+          var noteText = createEleNode('p',"", editBox.value, null, null);
+          var noteType = createEleNode('hr', 'noteType', "", null, null);
+          var delBtn = createEleNode('button', 'secondaryBtn', 'Delete', 'click', deleteNote);
+          var editBtn = createEleNode('button', 'secondaryBtn', 'Edit', 'click', editNote);
+          this.parentNode.appendChild(noteText);
+          this.parentNode.appendChild(delBtn);
+          this.parentNode.appendChild(editBtn);
+          this.parentNode.appendChild(noteType);
+          this.parentNode.removeChild(this.parentNode.firstChild); 
+      }); 
+  }
 
-})();
+
+  // Create html element
+  function createEleNode(element,className,text,event,fn){
+      var e = document.createElement(element);
+      if(className){
+          e.className = className;
+      }
+      var label = document.createTextNode(text);
+      e.appendChild(label);
+      if(event){
+          e.addEventListener(event, fn);
+      }
+      return e;
+  }
+
+  // Update local storage
+  function updateLocalStorage(){
+      localStorage.setItem('notes', JSON.stringify(notesObj));
+  }
+
+};
