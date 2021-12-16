@@ -29,6 +29,7 @@
     let entry = {
       entryTitle: title,
       entryDate: getCurrentDateTime(),
+      
     };
 
     entries.push(entry);
@@ -45,60 +46,6 @@
       journalItem.className = "journal-items";
       journalItem.innerHTML = entry.entryTitle;
       entriesList.appendChild(journalItem);
-
-
-/*      const displayEntryBtn = document.createElement("button");
-      displayEntryBtn.className = "display-entry-button";
-      displayEntryBtn.innerText =  entry.entryTitle;
-      journalItem.appendChild(displayEntryBtn); // Insert at the start of entires
-
-      const deleteEntryBtn = document.createElement("button");
-      deleteEntryBtn.className = "delete-entry-button";
-      deleteEntryBtn.innerText = "Delete";
-      journalItem.appendChild(deleteEntryBtn); // Insert at the start of entires
-
-      const editEntryBtn = document.createElement("button");
-      editEntryBtn.className = "edit-entry-button";
-      editEntryBtn.innerText = "Edit";
-      journalItem.appendChild(editEntryBtn); 
-
-      const saveEntryBtn = document.createElement("button");
-      saveEntryBtn.className = "save-entry-button";
-      saveEntryBtn.innerText = "Save";
-      journalItem.appendChild(saveEntryBtn); 
-
-      // Insert at the start of entires
-
-      const singleEntryTitleEl = document.createElement("h3");
-      singleEntryTitleEl.className = "single-entry title";
-      singleEntryTitleEl.innerText = entry.entryTitle;
-      singleEntryTitleEl.style.display = "none";
-      journalItem.appendChild(singleEntryTitleEl);
-
-      const singleEntryTextEl = document.createElement("div");
-      singleEntryTextEl.className = "single-entry clear";
-      singleEntryTextEl.innerText = entry.entryDescription;
-      singleEntryTextEl.style.display = "none";
-      journalItem.appendChild(singleEntryTextEl);
-
-      displayEntryBtn.addEventListener("click", function () {
-        const allEntries = document.querySelectorAll(".single-entry");
-        allEntries.forEach((element) => {
-          element.style.display = "flex";
-        });
-      });
-
-      deleteEntryBtn.addEventListener("click", function () {
-        deleteAtIndex(index);
-      });
-
-      editEntryBtn.addEventListener("click", function() {
-        singleEntryTextEl.contentEditable = true;
-      } );
-      
-      saveEntryBtn.addEventListener("click", function() {
-        singleEntryTextEl.contentEditable = false;
-      } )*/
 
     });
 
