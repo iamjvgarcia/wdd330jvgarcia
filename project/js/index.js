@@ -44,8 +44,8 @@ function journal(){
 
       // Loop through each note 
       for (var key in notesObj){
-          // Create card div
-          var div = document.createElement("div");
+          // Create card li
+          var div = document.createElement("li");
           div.className = 'card';
           div.dataset.id = key;
 
@@ -59,7 +59,7 @@ function journal(){
           div.appendChild(editBtn);
           div.appendChild(noteType);
               
-          mainNode.appendChild(div);
+          mainNode.appendChild(li);
       }  
   }
 
@@ -85,6 +85,8 @@ function journal(){
               // Re render
               renderNotes(notesObj);
           }
+
+          return currentNote;
 
   });
 
@@ -148,3 +150,4 @@ function journal(){
   }
 
 };
+
