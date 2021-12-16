@@ -12,67 +12,194 @@ gridViewButton.onclick = function () {
   list.classList.add('grid-view-filter');
 }
 
-//const createJournal = document.querySelector('.create-journal')
+//Create
+var mobileToggleContainer = document.querySelector('.toggle-container');
+var mobileToggle = document.querySelector('.toggle');
+var mobileMenu = document.querySelector('.create-journal');
 
-/*createJournal.onclick = function() {
-  const item = document.createElement('li');
-  item.classList.add('light');
-  item.setAttribute('data-name', hike.name);
-  item.innerHTML =  `<div class="journal-cover>
-    <input type="text" class="journal-title" placeholder="Journal Title"/>
-    <button id="submit">Create</button>
-    </div>
-    </div>`
-
-}*/
-
-
-
-// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
+if (mobileToggle) {
+  mobileToggle.addEventListener('click', function (event) {
+    mobileToggleContainer.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+  })
 }
 
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
 
-function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("Add a task!");
-  } else {
-    document.getElementById("list").appendChild(li);
-  }
-  document.getElementById("myInput").value = "";
+(function() {
+  'use strict';
 
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
+  var app = {
+    noteEditor: document.getElementsByClassName('journal-editor'),
+    noteEditorTitle: document.getElementById('journal-editor-title'),
+    title: document.getElementsByClassName('entry-title'),
+    message: document.getElementsByClassName('entry-textbox'),
+    addButton: document.getElementById('add-btn'),
+    errorDisplay: document.getElementById('error'),
+    deleteButton: document.querySelector('.delete'),
+    editButton: document.querySelector('.edit'),
+    notesSection: document.getElementById('notes-section'),
+    notes: document.getElementById('notes'),
+    editMode: false,
 
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
+    init: function() {
+      app.title.addEventListener('focus', app.clearError);
+      app.message.addEventListener('focus', app.clearError);
+
+      app.title.addEventListener('keypress', app.detectInput);
+      app.message.addEventListener('keypress', app.detectInput);
+
+      app.addButton.addEventListener('click', app.createNote);
+    },
+    detectInput1: function() {
+      if(!app.title.value || !app.message.value) {
+        return;
+      } else {
+        app.addButton.innerText = 'Create Note';
+      }
+    },
+    clearError: function() {
+      app.title.classList.remove('is-empty');
+      app.message.classList.remove('is-empty');
+      app.errorDisplay.innerHTML = '';
+    },
+    createNote: function() {
+      if(!app.title.value || !app.message.value) {
+        if(!app.title.value) {
+          app.title.classList.add('is-empty');  
+        }
+        if(!app.message.value) {
+          app.message.classList.add('is-empty');
+        }
+        app.errorDisplay.innerHTML = '<span>*Values required</span>';
+        return;
+      } else {
+        var note = new Object();
+
+        note.title = app.title.value;
+        note.message = app.message.value;
+
+        app.addNote(note);
+      }
+    },
+    addNote: function(note) {
+      var li = document.createElement('li'),
+      deleteBtn = document.createElement('span'),
+      editBtn = document.createElement('span'),
+      title = document.createElement('span'),
+      message = document.createElement('span'),
+      footer = document.createElement('footer');
+
+      deleteBtn.className = 'delete';
+      deleteBtn.innerHTML = '<i class="fa fa-trash-o"></i>';
+      deleteBtn.addEventListener('click', app.deleteNote);
+
+      title.className = 'note-title';
+      title.innerHTML = note.title;
+
+      message.className = 'note-message';
+      message.innerHTML = note.message;
+
+      editBtn.className = 'edit';
+      editBtn.innerHTML = '<i class="fa fa-pencil-square-o"></i> Edit';
+      editBtn.addEventListener('click', app.editNote);
+
+      footer.appendChild(editBtn);
+      
+
+      li.appendChild(deleteBtn);
+      li.appendChild(title);
+      li.appendChild(message);
+      li.appendChild(footer);
+
+      app.notes.prepend(li);
+
+      app.title.value = '';
+      app.message.value = '';
+
+      if(!app.editMode) {
+        app.addButton.innerText = 'Create Note';
+      } else {
+        setTimeout(function() {
+          app.addButton.innerText = 'Create Note';
+        }, 200);
+      }
+    },
+    editNote: function() {
+      var li,
+      title,
+      message,
+      note = new Object();
+
+      li = this.parentNode.parentNode;
+
+      for(var i = 0; i < li.childNodes.length; i++) {
+        if(li.childNodes[i].className === 'note-title') {
+          title = li.childNodes[i].innerText;
+        }
+      }
+
+      for(var i = 0; i < li.childNodes.length; i++) {
+        if(li.childNodes[i].className === 'note-message') {
+          message = li.childNodes[i].innerText;
+        }
+      }
+
+      note.title = title;
+      note.message = message;
+      
+      app.openNote(note);
+
+      setTimeout(function() {
+        li.remove();
+      }, 200);
+    },
+    openNote: function(note) {
+      if(!app.editMode) {
+        app.noteEditor.classList.add('hide');
+        app.notesSection.classList.add('hide');
+      
+        setTimeout(function() {
+          app.noteEditorTitle.innerText = 'Edit Note';
+          
+          app.addButton.innerText = 'Done';
+          app.addButton.removeEventListener('click', app.createNote);
+          app.addButton.addEventListener('click', app.saveNote);
+
+          app.title.value = note.title;
+          app.message.value = note.message;
+
+          app.noteEditor.classList.remove('hide');
+          app.editMode = true;
+        }, 200);
+      } else {
+        return;
+      }  
+    },
+    saveNote: function() {
+      app.createNote();
+
+      app.noteEditor.classList.add('hide');
+      app.notesSection.classList.add('hide');
     
-  }
-  
-}
+      setTimeout(function() {
+        app.noteEditorTitle.innerText = 'Create Note';
+
+        app.addButton.removeEventListener('click', app.saveNote);
+        app.addButton.addEventListener('click', app.createNote);
+
+        app.title.value = '';
+        app.message.value = '';
+
+        app.notesSection.classList.remove('hide');
+        app.noteEditor.classList.remove('hide');
+        app.editMode = false;
+      }, 200);
+    },    
+    deleteNote: function() {
+      this.parentNode.remove();
+    }
+  };
+
+  app.init();
+
+})();

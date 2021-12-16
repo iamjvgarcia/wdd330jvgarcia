@@ -13,30 +13,38 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1><i class="fa fa-book"></i>My Journals</h1>
-        </div>
-        <div class="filter-buttons">
-            <div class="list-view-button"><i class="fa fa-bars" aria-hidden="true"></i></div>
-            <div class="grid-view-button"><i class="fa fa-th-large" aria-hidden="true"></i></div>
+            <div class="title">
+                <h1><i class="fa fa-book"></i>My Journals</h1>
+            </div>
+            <div class="filter-buttons">
+                <div class="list-view-button"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                <div class="grid-view-button"><i class="fa fa-th-large" aria-hidden="true"></i></div>
+            </div>
         </div>
 
         <div class="content">
 
-            <ol class="list list-view-filter">
-                <li>List item 1</li>
-                <li>List item 2</li>
-                <li>List item 3</li>
-                <li>List item 4</li>
-                <li>List item 5</li>
-                <li>List item 6</li>
-            </ol>
+            <div class="list list-view-filter notes">
+                <ul id="notes"></ul>
+            </div>
         </div>
-        <div id="create-journal">
-        <div href="#" class="float">
-            <i class="fa fa-plus my-float"></i>
-        </button>
+        <div class="toggle-container">
+            <div class="toggle">
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        
+
+        <form class="journal-editor">
+            <h2 id="journal-editor-title">Create Journal</h2>
+            <ul>
+                <li><input type="text" class="entry-title" placeholder="Give your entry a title..."></li>
+                <li><textarea class="entry-textbox" placeholder="Start clearing out your head..."></textarea></li>
+                <br>
+                <li><button type="submit" class="save-button">Submit</button></li>
+            </ul>
+        </form>
+
     </div>
     <script src="js/index.js"></script>
 </body>
